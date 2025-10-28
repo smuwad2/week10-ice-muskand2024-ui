@@ -18,7 +18,7 @@
 
 <template>
     <!-- Card layout for a blog post -->
-    <div class="card" style="width: 18rem; margin-bottom: 1rem;">
+    <div class="card mb-2" style="width: 18rem; margin-bottom: 1rem;">
         <img :src="imageSrc" :alt="mood + ' mood'" class="card-img-top" />
         <div class="card-body">
             <h5 class="card-title">{{ subject }}</h5>

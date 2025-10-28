@@ -32,16 +32,39 @@
                 this.posts = [{ entry: 'There was an error: ' + error.message }]
             })
         },
+
+
         methods: {
             deletePost(id) {
                 // TODO: Complete the delete method
+                axios.get(`${this.baseUrl}/deletePost`, {
+                    params: {
+                        id: id
+                    }
+                })
+                .then(response => {
+                    // this gets the data, which is an array
+                    console.log(response.data.message)
+                    this.posts.filter(post => post.id != id) // filter through posts, if id != id, keep and show
+                })
+                .catch(error => {
+                    this.posts = [{ entry: 'There was an error: ' + error.message }]
+                })
             }
+
         }
     }
 </script>
 
 <template>
    <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
-
+    <blog-post
+            v-for="post in posts"
+            :subject="post.subject"
+            :entry="post.entry"
+            :mood="post.mood"
+            :key="post.id"
+        >
+            <button class="btn btn-primary" @click="deletePost(post.id)">Delete</button>
+    </blog-post>
 </template>
-
